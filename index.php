@@ -3,50 +3,50 @@ $is_auth = rand(0, 1);
 
 $user_name = 'Настя';
 $user_avatar = 'img/user.jpg';
-$categories = ['doski i lizhi' => 'Доски и лыжи',
-               'Kreplenia' => 'Крепления',
-               'Botinki' => 'Ботинки',
-               'Odezhda' => 'Одежда',
-               'Instrumenti' => 'Инструменты',
-               'Raznoe' => 'Разное'];
+$category = ['boards' => 'Доски и лыжи',
+               'attachment' => 'Крепления',
+               'boots' => 'Ботинки',
+               'clothing' => 'Одежда',
+               'tools' => 'Инструменты',
+               'other' => 'Разное'];
 $items = [
-      0 => [
+           [
               'name' => '2014 Rossignol District Snowboard',
-              'categiries' => 'Доски и лыжи',
-              'prise' => 10999,
+              'category' => 'Доски и лыжи',
+              'price' => 10999,
               'url' => 'img/lot-1.jpg'
-               ],
-      1 => [
+           ],
+           [
                'name' => 'DC Ply Mens 2016/2017 Snowboard',
-               'categiries' => 'Доски и лыжи',
-               'prise' => 159999,
+               'category' => 'Доски и лыжи',
+               'price' => 159999,
                'url' => 'img/lot-2.jpg'
-               ],
-      2 => [
+           ],
+           [
                'name' => 'Крепления Union Contact Pro 2015 года размер L/XL',
-               'categiries' => 'Крепления',
-               'prise' => 8000,
+               'category' => 'Крепления',
+               'price' => 8000,
                'url' => 'img/lot-3.jpg'
-               ],
-      3 => [
+           ],
+           [
                 'name' => 'Ботинки для сноуборда DC Mutiny Charocal',
-                'categiries' => 'Ботинки',
-                'prise' => 10999,
+                'category' => 'Ботинки',
+                'price' => 10999,
                 'url' => 'img/lot-4.jpg'
-               ],
-      4 => [
+           ],
+           [
                 'name' => 'Куртка для сноуборда DC Mutiny Charocal',
-                'categiries' => 'Одежда',
-                'prise' => 7500,
+                'category' => 'Одежда',
+                'price' => 7500,
                 'url' => 'img/lot-5.jpg'
-               ],
-      5 => [
+           ],
+           [
                 'name' => 'Маска Oakley Canopy',
-                'categiries' => 'Разное',
-                'prise' => 5400,
+                'category' => 'Разное',
+                'price' => 5400,
                 'url' => 'img/lot-6.jpg'
-              ]
-];
+           ]
+         ];
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -99,9 +99,9 @@ $items = [
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
-       <?php foreach ($categories as $key => $categori ): ?>
+       <?php foreach ($category as $category_alias => $category_name): ?>
             <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html"><?=$categori;?></a>
+                <a class="promo__link" href="pages/all-lots.html"><?=$category_name;?></a>
             </li>
          <?php endforeach; ?>
         </ul>
@@ -117,11 +117,11 @@ $items = [
                     <img src="<?=$item['url'];?>" width="350" height="260" alt="">
                 </div>
                 <div class="lot__info">
-                    <span class="lot__category"><?=$item['categiries'];?></span>
+                    <span class="lot__category"><?=$item['category'];?></span>
                     <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=$item['name'];?></a></h3>
                     <div class="lot__state">
                         <div class="lot__rate">
-                            <span class="lot__amount"><?=$item['prise'];?></span>
+                            <span class="lot__amount"><?=$item['price'];?></span>
                             <span class="lot__cost">цена<b class="rub">р</b></span>
                         </div>
                         <div class="lot__timer timer">
@@ -139,9 +139,9 @@ $items = [
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-            <?php foreach ($categories as $categori): ?>
+            <?php foreach ($category as $category_alias => $category_name): ?>
             <li class="nav__item">
-            <a href="pages/all-lots.html"><?=$categori;?></a>
+            <a href="pages/all-lots.html"><?=$category_name;?></a>
             </li>
           <?php endforeach; ?>
         </ul>
