@@ -19,35 +19,42 @@ $items = [
            ],
            [
                'name' => 'DC Ply Mens 2016/2017 Snowboard',
-               'category' => 'Доски и лыжи',
+               'category' => $category['boards'],
                'price' => 159999,
                'url' => 'img/lot-2.jpg'
            ],
            [
                'name' => 'Крепления Union Contact Pro 2015 года размер L/XL',
-               'category' => 'Крепления',
+               'category' => $category['attachment'],
                'price' => 8000,
                'url' => 'img/lot-3.jpg'
            ],
            [
                 'name' => 'Ботинки для сноуборда DC Mutiny Charocal',
-                'category' => 'Ботинки',
+                'category' => $category['boots'],
                 'price' => 10999,
                 'url' => 'img/lot-4.jpg'
            ],
            [
                 'name' => 'Куртка для сноуборда DC Mutiny Charocal',
-                'category' => 'Одежда',
+                'category' => $category['clothing'],
                 'price' => 7500,
                 'url' => 'img/lot-5.jpg'
            ],
            [
                 'name' => 'Маска Oakley Canopy',
-                'category' => 'Разное',
+                'category' => $category['other'],
                 'price' => 5400,
                 'url' => 'img/lot-6.jpg'
            ]
          ];
+
+function printprice($value)
+{
+ $integer = ceil($value);
+ $formatting = number_format($integer, 0, ' ', ' ');
+return $formatting. ' '. '₽' ;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -123,7 +130,7 @@ $items = [
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount"><?=$item['price'];?></span>
-                            <span class="lot__cost">цена<b class="rub">р</b></span>
+                            <span class="lot__cost"><?= printprice($item['price']); ?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
