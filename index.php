@@ -47,8 +47,15 @@ $items       = [
                 'url' => 'img/lot-6.jpg'
            ]
            ];
-function printprice($value)
-{
+           date_default_timezone_set("Europe/Moscow");
+function date_for_lot(){
+  $ts_midnight = strtotime('tomorrow');
+  $secs_to_midnight = $ts_midnight - time();
+  $hours = floor($secs_to_midnight / 3600);
+  $minutes = floor(($secs_to_midnight % 3600) / 60);
+  print "$hours:$minutes";
+}
+function printprice($value){
  $integer = ceil($value);
  $formatting = number_format($integer, 0, ' ', ' ');
 return $formatting. ' '. '₽' ;
@@ -57,7 +64,8 @@ require_once('functions.php');
 $page_content = include_template ('index.php',[
     'category' => $category,
     'items' => $items,
-    'category_name' => $category
+    'category_name' => $category,
+    'date_for_lot' => $date_for_lot
 ]);
 $layout_content = include_template ('layout.php',[
     'content' => $page_content,
@@ -71,3 +79,4 @@ function esc($str) {
 	return $text;
 }
 print($layout_content);
+?>
