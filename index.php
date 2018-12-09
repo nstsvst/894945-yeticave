@@ -64,8 +64,7 @@ require_once('functions.php');
 $page_content = include_template ('index.php',[
     'category' => $category,
     'items' => $items,
-    'category_name' => $category,
-    'date_for_lot' => $date_for_lot
+    'category_name' => $category
 ]);
 $layout_content = include_template ('layout.php',[
     'content' => $page_content,
