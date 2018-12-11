@@ -1,11 +1,11 @@
 DROP DATABASE IF EXISTS yeticave;
 CREATE DATABASE yeticave
- DEFAULT CHARACTER SET utf8
- DEFAULT COLLATE utf8_general_ci;
+DEFAULT CHARACTER SET utf8
+DEFAULT COLLATE utf8_general_ci;
 
- USE yeticave;
+USE yeticave;
 
- CREATE TABLE users (
+CREATE TABLE users (
    id INT AUTO_INCREMENT PRIMARY KEY,
    registration_date datetime,
    email CHAR(255) NOT NULL UNIQUE,
@@ -14,10 +14,10 @@ CREATE DATABASE yeticave
    avatar CHAR(128),
    contacts TEXT
  );
- CREATE TABLE lot (
+CREATE TABLE lot (
    id INT AUTO_INCREMENT PRIMARY KEY,
    category_id INT NOT NULL,
-   user_id_winner INT NOT NULL,
+   user_id_winner INT,
    user_id_autor INT NOT NULL,
    name CHAR(255) NOT NULL,
    creatiom_date datetime,
@@ -27,14 +27,14 @@ CREATE DATABASE yeticave
    init_price INT,
    step INT
  );
- CREATE TABLE bid (
+CREATE TABLE bid (
    id INT AUTO_INCREMENT PRIMARY KEY,
    lot_id INT NOT NULL,
    date datetime,
-   sum_prise INT
+   sum_price INT
  );
- CREATE TABLE category (
+CREATE TABLE category (
    id INT AUTO_INCREMENT PRIMARY KEY,
-   categories CHAR(255) NOT NULL UNIQUE,
+   title CHAR(255) NOT NULL UNIQUE,
    alias CHAR(255)
  );
