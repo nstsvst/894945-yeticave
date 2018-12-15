@@ -1,4 +1,4 @@
-INSERT INTO category (alias, categories) VALUES
+INSERT INTO category (alias, title) VALUES
   ('boards', 'Доски и лыжи'),
   ('attachment', 'Крепления'),
   ('boots', 'Ботинки'),
@@ -25,13 +25,13 @@ INSERT INTO bid (lot_id, date, sum_prise) VALUES
   ('1', '2018-12-01 03:10:00', '11299');
 
   /* получить все категории*/
-SELECT * FROM category;
+SELECT alias, title FROM category;
 
   /*получить самые новые, открытые лоты. Каждый лот должен включать название, стартовую цену, ссылку на изображение, цену, название категории. По этой схеме у меня открывает несколько раз лот с несколькими ставками, хотела вставить max() но не вышло*/
-SELECT name, init_price, image, category.title, sum_price
+SELECT name, init_price, image, category_name, sum_price
 FROM lot
 LEFT  JOIN category
-ON  category_id=category.id
+ON  category_name=category.title
 left JOIN bid
 ON lot.id=bid.lot_id
 WHERE end_date >"2018-11-12 00:00:00";

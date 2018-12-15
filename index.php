@@ -2,17 +2,11 @@
 $is_auth = rand(0, 1);
 $user_name   = 'Настя';
 $user_avatar = 'img/user.jpg';
-$category    = ['boards' => 'Доски и лыжи',
-                'attachment' => 'Крепления',
-                'boots' => 'Ботинки',
-                'clothing' => 'Одежда',
-                'tools' => 'Инструменты',
-                'other' => 'Разное'
-               ];
+/*
 $items       = [
            [
               'name' => '2014 Rossignol District Snowboard',
-              'category' => $category['boards'],
+              'category' => $category['alias'],
               'price' => 10999,
               'url' => 'img/lot-1.jpg'
            ],
@@ -47,6 +41,7 @@ $items       = [
                 'url' => 'img/lot-6.jpg'
            ]
            ];
+*/
            date_default_timezone_set("Europe/Moscow");
 function date_for_lot(){
   $ts_midnight = strtotime('tomorrow');
@@ -61,10 +56,29 @@ function printprice($value){
 return $formatting. ' '. '₽' ;
 }
 require_once('functions.php');
+
+$con = mysqli_connect("localhost", "root", "123doom789", "yeticave");
+if ($con == false) {
+  print("Ошибка подключения:") . mysqli_connect_error();
+}
+mysqli_set_charset($con, "utf-8");
+$category_from_sql= 'SELECT alias, title FROM category';
+$category_result= mysqli_query($con, $category_from_sql);
+$category = mysqli_fetch_all($category_result , MYSQLI_ASSOC);
+
+$items_from_sql='SELECT name, init_price, image, category.title as category_name
+FROM lot
+LEFT  JOIN category
+ON  category_id=category.id
+ORDER BY creatiom_date DESC';
+
+$items_result=mysqli_query($con, $items_from_sql);
+
+$items = mysqli_fetch_all($items_result , MYSQLI_ASSOC);
+
 $page_content = include_template ('index.php',[
     'category' => $category,
     'items' => $items,
-    'category_name' => $category
 ]);
 $layout_content = include_template ('layout.php',[
     'content' => $page_content,
@@ -78,4 +92,6 @@ function esc($str) {
 	return $text;
 }
 print($layout_content);
+
+
 ?>
