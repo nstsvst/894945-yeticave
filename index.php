@@ -2,9 +2,7 @@
 require_once('init.php');
 require_once('functions.php');
 
-$category_from_sql = 'SELECT alias, title FROM category';
-$category_result = mysqli_query($con, $category_from_sql);
-$category = mysqli_fetch_all($category_result , MYSQLI_ASSOC);
+
 
 $items_from_sql = 'SELECT lot.id, name, init_price, image, category.title as category_name
   FROM lot
